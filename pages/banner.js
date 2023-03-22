@@ -33,9 +33,9 @@ export default function Login() {
       <main className="h-screen bg-neutral-50 flex flex-col items-center place-content-center gap-8 p-4">
 
 
-          <div className='relative w-11/12'>
+          <div className='relative w-11/12 h-[512px]'>
 
-            <svg id="blob-scene-haikei" xmlns="http://www.w3.org/2000/svg" width="1014" height="1014" viewBox="0 0 1014 1014">
+            <svg className='w-full h-full' id="blob-scene-haikei" xmlns="http://www.w3.org/2000/svg" width="1014" height="1014" viewBox="0 0 1014 1014">
               <rect id="Rectangle_1" data-name="Rectangle 1" width="1014" height="1014" fill="#34d399"/>
               <g id="Group_5" data-name="Group 5" transform="translate(619.667)">
                 <path id="Path_6" data-name="Path 6" d="M44.333,394.333c-86.3-.225-172.718-.563-197.167-52.841S-139.989,185-162.523,119.427-267.528,26.927-350,0H44.333Z" transform="translate(350)" fill="#9333ea"/>
@@ -50,15 +50,15 @@ export default function Login() {
               <div className='space-y-2'>
                 <p className='font-bold text-4xl text-center font-[Teko] text-white'>luvo</p>
               </div>
-              <div className='inline-block p-2 rounded-md'>
+              <div className='inline-block p-2 rounded-md bg-white'>
                 <QRCode 
                   className="mx-auto" 
-                  size={125} 
+                  size={200} 
                   value={user?.tag || "luvo"} 
                 />
               </div>
               <p className='text-lg text-center font-bold'>{user?.tag}</p>
-              <p className='text-sm text-center font-bold'>{user?.company}</p>
+              <p className='text-xs text-center'>{user?.company}</p>
 
             </div>
 
