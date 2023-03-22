@@ -187,7 +187,6 @@ export default function Withdraw({ banks }) {
 export async function getServerSideProps(context) {
 
   const { banks } = await fetchData('/api/banks');
-  console.log(banks?.[0])
 
   return {
     props: {
