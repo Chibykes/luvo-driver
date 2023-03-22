@@ -12,9 +12,7 @@ import Select from '@/components/Select';
 
 
 
-export default function FundWallet({ banks }) {
-
-  console.log(banks)
+export default function Withdraw({ banks }) {
 
   const router = useRouter();
   const [showConfirm, setShowConfirm] = useState(false);
