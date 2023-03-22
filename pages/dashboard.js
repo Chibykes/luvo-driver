@@ -60,7 +60,7 @@ export default function Dashboard() {
                 <svg className='w-9 h-9' xmlns="http://www.w3.org/2000/svg" width="509" height="571.001" viewBox="0 0 509 571.001">
                   <g id="Group_1" data-name="Group 1" transform="translate(-239 -315.999)">
                     <circle id="Ellipse_1" data-name="Ellipse 1" cx="173.5" cy="173.5" r="173.5" transform="translate(401 540)" fill="#34d399"/>
-                    <path id="Path_2" data-name="Path 2" d="M332.64,64.58C313.18,43.57,286,32,256,32c-30.16,0-57.43,11.5-76.8,32.38-19.58,21.11-29.12,49.8-26.88,80.78C156.76,206.28,203.27,256,256,256s99.16-49.71,103.67-110.82c2.27-30.7-7.33-59.33-27.03-80.6ZM432,480H80a31,31,0,0,1-24.2-11.13c-6.5-7.77-9.12-18.38-7.18-29.11C57.06,392.94,83.4,353.61,124.8,326c36.78-24.51,83.37-38,131.2-38s94.42,13.5,131.2,38c41.4,27.6,67.74,66.93,76.18,113.75,1.94,10.73-.68,21.34-7.18,29.11A31,31,0,0,1,432,480Z" transform="translate(191.006 283.999)" fill="#9333ea" stroke="#000" stroke-width="0"/>
+                    <path id="Path_2" data-name="Path 2" d="M332.64,64.58C313.18,43.57,286,32,256,32c-30.16,0-57.43,11.5-76.8,32.38-19.58,21.11-29.12,49.8-26.88,80.78C156.76,206.28,203.27,256,256,256s99.16-49.71,103.67-110.82c2.27-30.7-7.33-59.33-27.03-80.6ZM432,480H80a31,31,0,0,1-24.2-11.13c-6.5-7.77-9.12-18.38-7.18-29.11C57.06,392.94,83.4,353.61,124.8,326c36.78-24.51,83.37-38,131.2-38s94.42,13.5,131.2,38c41.4,27.6,67.74,66.93,76.18,113.75,1.94,10.73-.68,21.34-7.18,29.11A31,31,0,0,1,432,480Z" transform="translate(191.006 283.999)" fill="#34d399" stroke="#000" stroke-width="0"/>
                   </g>/
                 </svg>
                 <p className='font-bold text-xs text-center text-neutral-400'>Profile</p>
@@ -69,13 +69,31 @@ export default function Dashboard() {
 
             <Link href="/withdraw">
               <div className='flex flex-col justify-center items-center p-2 space-y-2 active:bg-neutral-200 rounded-md'>
-                <svg className='w-9 h-9' xmlns="http://www.w3.org/2000/svg" width="504.01" height="382" viewBox="0 0 504.01 382">
-                  <g id="Group_1" data-name="Group 1" transform="translate(-243.99 -505)">
-                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="173.5" cy="173.5" r="173.5" transform="translate(401 540)" fill="#34d399"/>
-                    <path id="Path_3" data-name="Path 3" d="M402.371,46.549C377.243,36.01,352.1,32,326.963,32,247.177,31.994,167.4,72.382,87.611,72.382A196.54,196.54,0,0,1,27.6,63.495a22.149,22.149,0,0,0-6.7-1.049A20.612,20.612,0,0,0,0,83.051V288.563c0,8.181,4.683,15.935,12.2,19.083C37.331,318.193,62.478,322.2,87.611,322.2c79.786,0,159.572-40.389,239.359-40.389a196.54,196.54,0,0,1,60.016,8.887,22.149,22.149,0,0,0,6.7,1.049,20.612,20.612,0,0,0,20.891-20.606V65.639c-.006-8.188-4.69-15.935-12.211-19.09ZM31.093,96.92c13.033,3.265,26.636,4.9,40.628,5.785a41.506,41.506,0,0,1-40.628,33.386Zm0,184.615V250.584a41.444,41.444,0,0,1,41.27,39.773A156.489,156.489,0,0,1,31.093,281.535Zm176.194-42.248c-28.625,0-51.822-27.848-51.822-62.186s23.2-62.186,51.822-62.186,51.822,27.841,51.822,62.186S235.9,239.287,207.287,239.287Zm176.194,18a222.717,222.717,0,0,0-35.187-5.467,41.37,41.37,0,0,1,35.187-31.922Zm0-152.946a41.374,41.374,0,0,1-36.152-39.87,155.713,155.713,0,0,1,36.152,8.2Z" transform="translate(243.99 473)" fill="#9333ea" stroke="#000" stroke-width="0"/>
+                <svg className='w-9 h-9' xmlns="http://www.w3.org/2000/svg" width="384.667" height="394.833" viewBox="0 0 384.667 394.833">
+                  <g id="Group_3" data-name="Group 3" transform="translate(-1496.353 -457.167)">
+                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="148" cy="148" r="148" transform="translate(1585.02 556)" fill="#9333ea"/>
+                    <g id="Group_1" data-name="Group 1" transform="translate(1494.353 455.167)">
+                      <path id="Path_2" data-name="Path 2" d="M64.445,133c-25.965,0-28.223-12.136-28.223-14.111H8c0,12.982,9.313,35.984,42.334,41.205v15.24H78.557V160.1c28.223-4.8,42.334-23,42.334-41.205,0-15.8-7.338-42.334-56.445-42.334-28.223,0-28.223-8.89-28.223-14.111S46.1,48.334,64.445,48.334,84.06,57.365,84.2,62.445h28.223A42.334,42.334,0,0,0,78.557,21.8V6H50.334V21.381C22.111,26.038,8,44.242,8,62.445c0,15.8,7.338,42.334,56.445,42.334,28.223,0,28.223,9.6,28.223,14.111S83.919,133,64.445,133Z" transform="translate(78.668 52.445)" fill="#34d399" stroke="#000" stroke-width="0"/>
+                      <path id="Path_3" data-name="Path 3" d="M44.334,2H2V30.223H30.223V270.116a14.111,14.111,0,0,0,14.111,14.111H241.893A14.111,14.111,0,0,0,256,270.116V30.223h28.223V2ZM227.782,256H58.445V30.223H227.782Z" transform="translate(0 0)" fill="#34d399" stroke="#000" stroke-width="0"/>
+                    </g>
                   </g>
                 </svg>
                 <p className='font-bold text-xs text-center text-neutral-400'>Withdraw</p>
+              </div>
+            </Link>
+
+            <Link href="/banner">
+              <div className='flex flex-col justify-center items-center p-2 space-y-2 active:bg-neutral-200 rounded-md'>
+                <svg className='w-9 h-9' xmlns="http://www.w3.org/2000/svg" width="434.279" height="434.818" viewBox="0 0 434.279 434.818">
+                  <g id="Group_4" data-name="Group 4" transform="translate(-925.02 -395.182)">
+                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="173.5" cy="173.5" r="173.5" transform="translate(925.02 483)" fill="#9333ea"/>
+                    <g id="Group_2" data-name="Group 2" transform="translate(992 395.182)">
+                      <path id="Path_4" data-name="Path 4" d="M0,0H367.3V367.3H0Z" fill="none" stroke="#000" stroke-width="0"/>
+                      <path id="Path_5" data-name="Path 5" d="M277.474,33.608H32.608V247.866L174.814,105.629a15.3,15.3,0,0,1,21.64,0l81.02,81.173ZM2,18.2A15.3,15.3,0,0,1,17.182,3H292.9a15.192,15.192,0,0,1,15.182,15.2v245.08a15.3,15.3,0,0,1-15.182,15.2H17.182A15.2,15.2,0,0,1,2,263.277ZM93.825,125.433a30.608,30.608,0,1,1,30.608-30.608A30.608,30.608,0,0,1,93.825,125.433Z" transform="translate(28.608 42.912)" fill="#34d399" stroke="#000" stroke-width="0"/>
+                    </g>
+                  </g>
+                </svg>
+                <p className='font-bold text-xs text-center text-neutral-400'>Company Banner</p>
               </div>
             </Link>
 
