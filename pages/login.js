@@ -39,7 +39,7 @@ export default function Login() {
       <main className="h-screen bg-green-400 flex flex-col items-center place-content-center gap-8 p-4">
 
 
-          <div className='space-y-4'>
+          <div className='space-y-2'>
             <p className='font-bold text-4xl text-center font-[Teko] text-white'>luvo</p>
             <small className='block text-white text-center'>Driver</small>
 
