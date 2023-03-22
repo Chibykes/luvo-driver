@@ -59,7 +59,7 @@ export default function Dashboard() {
               <div className='flex flex-col justify-center items-center p-2 space-y-2 active:bg-neutral-200 rounded-md'>
                 <svg className='w-9 h-9' xmlns="http://www.w3.org/2000/svg" width="509" height="571.001" viewBox="0 0 509 571.001">
                   <g id="Group_1" data-name="Group 1" transform="translate(-239 -315.999)">
-                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="173.5" cy="173.5" r="173.5" transform="translate(401 540)" fill="#34d399"/>
+                    <circle id="Ellipse_1" data-name="Ellipse 1" cx="173.5" cy="173.5" r="173.5" transform="translate(401 540)" fill="#9333ea"/>
                     <path id="Path_2" data-name="Path 2" d="M332.64,64.58C313.18,43.57,286,32,256,32c-30.16,0-57.43,11.5-76.8,32.38-19.58,21.11-29.12,49.8-26.88,80.78C156.76,206.28,203.27,256,256,256s99.16-49.71,103.67-110.82c2.27-30.7-7.33-59.33-27.03-80.6ZM432,480H80a31,31,0,0,1-24.2-11.13c-6.5-7.77-9.12-18.38-7.18-29.11C57.06,392.94,83.4,353.61,124.8,326c36.78-24.51,83.37-38,131.2-38s94.42,13.5,131.2,38c41.4,27.6,67.74,66.93,76.18,113.75,1.94,10.73-.68,21.34-7.18,29.11A31,31,0,0,1,432,480Z" transform="translate(191.006 283.999)" fill="#34d399" stroke="#000" stroke-width="0"/>
                   </g>/
                 </svg>
