@@ -54,7 +54,7 @@ export default function Login() {
                 <QRCode 
                   className="mx-auto" 
                   size={125} 
-                  value={user?.tag} 
+                  value={user?.tag || "luvo"} 
                 />
               </div>
               <p className='text-lg text-center font-bold'>{user?.tag}</p>
