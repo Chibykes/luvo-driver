@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import fetchData from '@/hooks/fetchData';
 import Navbar from '@/components/Navbar';
 import Select from '@/components/Select';
+import { toast, Toaster } from 'react-hot-toast';
 
 
 
@@ -73,11 +74,17 @@ export default function Withdraw({ banks }) {
   const validateBank = async(e) => {
     const details = { 
       account_number: form?.account_number,
-      code: form?.bank_code
+      bank_code: form?.bank_code
     };
 
-    const { data } = await fetch('/api/validate-bank', { method: 'post', body: details });
-    setForm({ ...form, ...data });
+    const { status, data } = await fetchData('/api/validate-bank', { method: 'POST', body: details });
+    if(status === 2){
+      setForm({ ...form, ...data });
+      setShowConfirm(true);
+      return
+    }
+
+    return toast.error('Account Number unable to resolve');
   }
 
   useEffect(() => {
@@ -97,6 +104,11 @@ export default function Withdraw({ banks }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="max-w-md mx-auto h-screen flex flex-col p-4 gap-4 bg-neutral-50">
+        <Toaster 
+          toastOptions={{
+            className: 'text-xs font-semibold',
+          }}
+        />
 
 
         <Navbar 
@@ -126,7 +138,7 @@ export default function Withdraw({ banks }) {
           <Input
             name="amount"
             placeholder="Amount to be paid"
-            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
+            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value.replace(/[^\d]/ig,'') })}
             value={`₦ ${parseInt(form?.amount||0).toLocaleString()}`}
             required
           />
