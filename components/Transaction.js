@@ -14,7 +14,8 @@ export default function Transaction({ type, status, from, to, createdAt, amount 
             <div className='space-y-2'>
                 <p className='font-bold text-xs capitalize'>{
                     type === "refund" 
-                    ? "Refund" : user?.role === "customer"
+                    ? "Refund" : type === "withdrawal"
+                    ? "Withdrawal" :  user?.role === "customer"
                     ? to.fullname : from?.fullname
                 }</p>
 

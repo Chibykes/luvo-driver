@@ -71,7 +71,7 @@ export default function Select({
 
             <div className={`${error2 && 'border-red-600'} ${success2 && '!border-green-400'} ${ props.disabled && 'bg-neutral-200' } bg-white border-2 border-neutral-200 flex gap-2 p-1 rounded-md`}>
               <select 
-                className='block w-full p-3 text-xs'
+                className='block w-full p-3 text-sm !outline-none bg-transparent'
                 name={name}
                 type={type || "text"}
                 {...props}

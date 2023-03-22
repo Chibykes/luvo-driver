@@ -21,48 +21,7 @@ export default function Withdraw({ banks }) {
 
   const [amount, setAmount] = useState();
   const [user, setUser] = useState({});
-  const [reference, setReference] = useState({});
-
-  async function payWithPaystack(e) {
-    e.preventDefault();
-
-    let details = {
-      email: user?.email,
-      amount: Number(amount) * 100,
-      ref: 'T'+new Date().getTime(),
-    }
-
-    let body = {
-      type: "funding",
-      amount: Number(amount),
-      reference: details.ref,
-    }
-
-    const options = {
-      method: 'POST',
-      body
-    }
-
-    localStorage.setItem('ongoing_transc', JSON.stringify({...details, ...body}));
-
-    const {status, data} = await fetchData('/api/fund-wallet', options);
-    if(status === 0) return router.push('/login');
-  
-    let handler = PaystackPop.setup({
-      key: 'pk_test_1036b2692892ebe21cf87429183177c154984321', // Replace with your public key
-      ...details,
-      onClose: function(){
-        console.log('Window closed.');
-      },
-      callback: function({reference}){
-
-        router.push('/success');
-
-      }
-    });
-  
-    handler.openIframe();
-  }
+  const [loading, setLoading] = useState(false);
 
   const handleBank = (e) => {
     setForm({ ...form, 
@@ -72,6 +31,12 @@ export default function Withdraw({ banks }) {
   }
 
   const validateBank = async(e) => {
+
+    if(form.amount > user?.balance){
+      return toast.error('Not enough balance');
+    }
+
+    setLoading(true);
     const details = { 
       account_number: form?.account_number,
       bank_code: form?.bank_code
@@ -80,11 +45,27 @@ export default function Withdraw({ banks }) {
     const { status, data } = await fetchData('/api/validate-bank', { method: 'POST', body: details });
     if(status === 2){
       setForm({ ...form, ...data });
+      setLoading(false);
       setShowConfirm(true);
       return
     }
-
+    
     return toast.error('Account Number unable to resolve');
+  }
+  
+  const handleWithdrawal = async() =>{
+    setLoading(true);
+    const { status } = await fetchData('/api/payout', { method: 'POST', body: form });
+
+    if(status === 2){
+      setLoading(false);
+      localStorage.setItem('ongoing_transc', JSON.stringify(form));
+      toast.success('Withdrawal Successful');
+      return router.push('/success');
+    }
+    
+    return toast.error('Error sending payment');
+    
   }
 
   useEffect(() => {
@@ -146,6 +127,7 @@ export default function Withdraw({ banks }) {
           <Button
             text="Withdraw"
             onClick={validateBank}
+            loading={loading}
           />
 
         </div>
@@ -155,20 +137,19 @@ export default function Withdraw({ banks }) {
         <div className={`${!showConfirm ? '-bottom-full' : 'bottom-0'} fixed left-0 w-full h-auto p-6 rounded-t-2xl bg-white space-y-4 py-12 duration-200`}>
           <p className='font-bold text-center'>Withdraw</p>
 
-          <p className="text-2xl font-bold text-center">&#8358; {form?.amount?.toLocaleString()}</p>
-          <p className="text-sm text-center">To: {form?.account_name}</p>
-          <p className="text-sm text-center">{form?.account_number}</p>
-
-          <div className='flex items-center justify-between'>
-            <p className='text-xs font-bold'>Payment To</p>
-            <p className='text-xs font-bold text-green-400'>{form?.company}</p>
+          <p className="text-3xl font-bold text-center text-green-500">&#8358; {form?.amount?.toLocaleString()}</p>
+          <div className='space-y-1'>
+            <p className="text-sm text-center uppercase">{form?.account_name}</p>
+            <p className="text-sm text-center">{form?.account_number}</p>
+            <p className="text-sm text-center">{form?.bank_name}</p>
           </div>
+
 
 
           <Button 
             text="Confirm"
-            // onClick={handlePay}
-            // loading={loading}
+            onClick={handleWithdrawal}
+            loading={loading}
           />
 
         </div>
