@@ -4,7 +4,7 @@ import fetchData from '@/hooks/fetchData'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QRCode from "react-qr-code";
 import { IoMdDownload } from "react-icons/io";
 
