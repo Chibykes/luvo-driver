@@ -4,14 +4,16 @@ import fetchData from '@/hooks/fetchData'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import QRCode from "react-qr-code";
 import { IoMdDownload } from "react-icons/io";
+import html2canvas from 'html2canvas';
 
 
 export default function Login() {
 
   const [user, setUser] = useState({ });
+  const bannerRef = useRef(null);
 
   const router = useRouter();
   useEffect(() => {
@@ -21,6 +23,26 @@ export default function Login() {
       setUser(user);
     })();
   }, [])
+
+  const handleDownloadImage = async () => {
+    const element = bannerRef.current;
+    const canvas = await html2canvas(element);
+
+    const data = canvas.toDataURL('image/jpg');
+    const link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+      link.href = data;
+      link.download = 'luvo-banner.jpg';
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
+  };
+
 
   return (
     <>
@@ -33,7 +55,7 @@ export default function Login() {
       <main className="h-screen bg-neutral-50 flex flex-col items-center place-content-center gap-8 p-4">
 
 
-          <div className='relative w-11/12 h-[512px]'>
+          <div ref={bannerRef} className='relative w-11/12'>
 
             <svg className='w-full h-full' id="blob-scene-haikei" xmlns="http://www.w3.org/2000/svg" width="1014" height="1014" viewBox="0 0 1014 1014">
               <rect id="Rectangle_1" data-name="Rectangle 1" width="1014" height="1014" fill="#34d399"/>
@@ -53,7 +75,7 @@ export default function Login() {
               <div className='inline-block p-2 rounded-md bg-white'>
                 <QRCode 
                   className="mx-auto" 
-                  size={200} 
+                  size={175} 
                   value={user?.tag || "luvo"} 
                 />
               </div>
@@ -64,7 +86,7 @@ export default function Login() {
 
           </div>
 
-          <div className='inline-flex gap-2 place-items-center font-bold bg-green-500 py-1 px-4 rounded-full mt-8'>
+          <div onClick={handleDownloadImage} className='inline-flex gap-2 place-items-center font-bold bg-green-500 py-1 px-4 rounded-full'>
             <IoMdDownload className=" text-white" />
             <span className='text-xs text-white'>Download</span>
           </div>

@@ -93,7 +93,7 @@ export default function Dashboard() {
                     </g>
                   </g>
                 </svg>
-                <p className='font-bold text-xs text-center text-neutral-400'>Company Banner</p>
+                <p className='font-bold text-xs text-center text-neutral-400'>QR Code</p>
               </div>
             </Link>
 
