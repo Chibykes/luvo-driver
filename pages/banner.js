@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import QRCode from "react-qr-code";
 import { IoMdDownload } from "react-icons/io";
-import html2canvas from 'html2canvas';
 import Navbar from '@/components/Navbar'
 import { toast, Toaster } from 'react-hot-toast'
 import { SiSpinrilla } from 'react-icons/si'
@@ -22,6 +21,9 @@ export default function Login() {
   const router = useRouter();
 
   useLayoutEffect(() => {
+    const {exportComponentAsPNG} = require('react-component-export-image');
+    window.exportComponentAsPNG = exportComponentAsPNG;
+
     setUser(JSON.parse(localStorage.getItem('luvo_driver') || "{}"));
   }, []);
 
@@ -35,25 +37,25 @@ export default function Login() {
     })();
   }, [])
 
-  const handleDownloadImage = async () => {
-    const element = bannerRef.current;
-    const canvas = await html2canvas(element);
+  // const handleDownloadImage = async () => {
+  //   const element = bannerRef.current;
+  //   const canvas = await html2canvas(element);
 
-    const data = canvas.toDataURL('image/jpg');
-    const link = document.createElement('a');
+  //   const data = canvas.toDataURL('image/jpg');
+  //   const link = document.createElement('a');
 
-    if (typeof link.download === 'string') {
-      link.href = data;
-      link.download = 'luvo-banner.jpg';
+  //   if (typeof link.download === 'string') {
+  //     link.href = data;
+  //     link.download = 'luvo-banner.jpg';
 
-      document.body.appendChild(link);
-      link.click();
-      toast.success('Banner Downloaded');
-      document.body.removeChild(link);
-    } else {
-      window.open(data);
-    }
-  };
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     toast.success('Banner Downloaded');
+  //     document.body.removeChild(link);
+  //   } else {
+  //     window.open(data);
+  //   }
+  // };
 
 
   return (
@@ -129,7 +131,15 @@ export default function Login() {
 
           </div>
 
-          <div onClick={handleDownloadImage} className='inline-flex gap-2 place-items-center font-bold bg-black py-1 px-4 rounded-full'>
+          <div 
+            onClick={() => (
+              toast.success('Banner Downloaded'), 
+              window.exportComponentAsPNG(bannerRef, {
+                fileName: `${user?.tag}.png`,
+                html2CanvasOptions: { scale: 2 }
+              })
+            )} 
+            className='inline-flex gap-2 place-items-center font-bold bg-black py-1 px-4 rounded-full'>
             <IoMdDownload className=" text-white" />
             <span className='text-xs text-white'>Download</span>
           </div>
