@@ -8,6 +8,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import QRCode from "react-qr-code";
 import { IoMdDownload } from "react-icons/io";
 import html2canvas from 'html2canvas';
+import Navbar from '@/components/Navbar'
+import { toast, Toaster } from 'react-hot-toast'
 
 
 export default function Login() {
@@ -37,6 +39,7 @@ export default function Login() {
 
       document.body.appendChild(link);
       link.click();
+      toast.success('Banner Downloaded');
       document.body.removeChild(link);
     } else {
       window.open(data);
@@ -52,12 +55,22 @@ export default function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-screen bg-neutral-50 flex flex-col items-center place-content-center gap-8 p-4">
+      <main className="max-w-md mx-auto h-screen bg-neutral-50 p-4">
 
+        <Toaster 
+          toastOptions={{
+            className: 'text-xs font-semibold',
+          }}
+        />
 
+        <Navbar 
+          text="Banner"
+        />
+
+        <div className='flex flex-col items-center place-content-center gap-8 pt-12'>
           <div ref={bannerRef} className='relative w-11/12'>
 
-            <svg className='w-full h-full' id="blob-scene-haikei" xmlns="http://www.w3.org/2000/svg" width="1014" height="1014" viewBox="0 0 1014 1014">
+            {/* <svg className='w-full h-full' id="blob-scene-haikei" xmlns="http://www.w3.org/2000/svg" width="1014" height="1014" viewBox="0 0 1014 1014">
               <rect id="Rectangle_1" data-name="Rectangle 1" width="1014" height="1014" fill="#34d399"/>
               <g id="Group_5" data-name="Group 5" transform="translate(619.667)">
                 <path id="Path_6" data-name="Path 6" d="M44.333,394.333c-86.3-.225-172.718-.563-197.167-52.841S-139.989,185-162.523,119.427-267.528,26.927-350,0H44.333Z" transform="translate(350)" fill="#9333ea"/>
@@ -65,31 +78,54 @@ export default function Login() {
               <g id="Group_6" data-name="Group 6" transform="translate(0 619.667)">
                 <path id="Path_7" data-name="Path 7" d="M0-350c22.759,89.683,45.4,179.478,111.54,201.11s175.647-24.787,229.953-3.943c54.418,20.843,53.629,108.949,52.841,197.167H0Z" transform="translate(0 350)" fill="#9333ea"/>
               </g>
-            </svg>
+            </svg> */}
 
-            <div className='absolute w-full h-full inset-0 flex flex-col justify-center items-center text-white space-y-2'>
+            <div className='overflow-hidden rounded-lg bg-white border border-green-400'>
+              <div className='min-h-[250px] gsrid grid-cols-3 gap-8 justify-center items-center space-y-5 p-4'>
+                
+                <div className='col-span-2 space-y-1'>
+                  <p className='font-bold text-4xl text-center font-[Teko]'>luvo</p>
+                  <p className='text-center text-[.625rem]'>
+                    Use Luvo to pay transport fees with ease.
+                  </p>
+                  <p className='text-center text-[.625rem]'>
+                    Download Here:<br />
+                    <Link className='text-green-400 font-bold' href="https://bit.ly/luvo_app">https://bit.ly/luvo_app</Link>
+                  </p>
+                </div>
 
-              <div className='space-y-2'>
-                <p className='font-bold text-4xl text-center font-[Teko] text-white'>luvo</p>
+                <div className="flex flex-col gap-2 justify-center items-center">
+                  <div className='inline-block p-2 rounded-md bg-white'>
+                    <QRCode 
+                      className="mx-auto" 
+                      size={100} 
+                      value={user?.tag || "luvo"} 
+                    />
+                  </div>
+                  <p className='text-sm text-center font-bold'>{user?.tag}</p>
+                </div>
+
               </div>
-              <div className='inline-block p-2 rounded-md bg-white'>
-                <QRCode 
-                  className="mx-auto" 
-                  size={175} 
-                  value={user?.tag || "luvo"} 
-                />
-              </div>
-              <p className='text-lg text-center font-bold'>{user?.tag}</p>
-              <p className='text-xs text-center'>{user?.company}</p>
 
+              <div className='flex items-center gap-5 bg-green-400 w-full p-6'>
+                <div className='grid place-content-center w-12 h-12 rounded-full bg-white text-3xl font-bold text-green-400'>
+                  {user?.fullname?.charAt(0)}
+                </div>
+                <div className="space-y-1 text-white">
+                  <p className='text-sm font-bold capitalize'>{user?.fullname}</p>
+                  <p className='text-xs font-bold capitalize'>{user?.company}</p>
+                </div>
+              </div>
             </div>
 
           </div>
 
-          <div onClick={handleDownloadImage} className='inline-flex gap-2 place-items-center font-bold bg-green-500 py-1 px-4 rounded-full'>
+          <div onClick={handleDownloadImage} className='inline-flex gap-2 place-items-center font-bold bg-black py-1 px-4 rounded-full'>
             <IoMdDownload className=" text-white" />
             <span className='text-xs text-white'>Download</span>
           </div>
+        </div>
+
         
       </main>
     </>
