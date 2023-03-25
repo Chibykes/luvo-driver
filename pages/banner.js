@@ -10,18 +10,27 @@ import { IoMdDownload } from "react-icons/io";
 import html2canvas from 'html2canvas';
 import Navbar from '@/components/Navbar'
 import { toast, Toaster } from 'react-hot-toast'
+import { SiSpinrilla } from 'react-icons/si'
 
 
 export default function Login() {
 
   const [user, setUser] = useState({ });
+  const [loading, setLoading] = useState(false);
   const bannerRef = useRef(null);
 
   const router = useRouter();
+
+  useLayoutEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('luvo_driver') || "{}"));
+  }, []);
+
   useEffect(() => {
     (async() => {
+      setLoading(true);
       const { user } = await fetchData('/api/user');
       if(user) localStorage.setItem('luvo_driver', JSON.stringify(user));
+      setLoading(false);
       setUser(user);
     })();
   }, [])
@@ -67,7 +76,7 @@ export default function Login() {
           text="Banner"
         />
 
-        <div className='flex flex-col items-center place-content-center gap-8 pt-12'>
+        {!loading ? <div className='flex flex-col items-center place-content-center gap-8 pt-12'>
           <div ref={bannerRef} className='relative w-11/12'>
 
             {/* <svg className='w-full h-full' id="blob-scene-haikei" xmlns="http://www.w3.org/2000/svg" width="1014" height="1014" viewBox="0 0 1014 1014">
@@ -125,6 +134,11 @@ export default function Login() {
             <span className='text-xs text-white'>Download</span>
           </div>
         </div>
+        :
+        <div className='flex flex-col gap-3 items-center justify-center py-12'>
+          <SiSpinrilla className="text-xl animate-spin" />
+          <p className='text-xs text-center font-bold'>Loading...</p>
+        </div>}
 
         
       </main>
