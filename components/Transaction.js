@@ -30,6 +30,7 @@ export default function Transaction({ type, status, from, to, createdAt, amount 
             {user?.role === "driver" &&
                 <div className=''>
                     { 
+                        type !== "funding" &&
                         (type !== "pay")
                         ? <p className='font-bold text-sm text-red-400 uppercase'>-&#8358;{(amount || 0).toLocaleString()}</p>
                         : <p className='font-bold text-sm text-green-400 uppercase'>+&#8358;{(amount || 0).toLocaleString()}</p>
