@@ -31,8 +31,8 @@ export default function Transaction({ type, status, from, to, createdAt, amount 
                 <div className=''>
                     { 
                         (type !== "pay")
-                        ? <p className='font-bold text-sm text-red-400 uppercase'>-&#8358;{(amount).toLocaleString()}</p>
-                        : <p className='font-bold text-sm text-green-400 uppercase'>+&#8358;{(amount).toLocaleString()}</p>
+                        ? <p className='font-bold text-sm text-red-400 uppercase'>-&#8358;{(amount || 0).toLocaleString()}</p>
+                        : <p className='font-bold text-sm text-green-400 uppercase'>+&#8358;{(amount || 0).toLocaleString()}</p>
                     }
                 </div>
             }
