@@ -104,7 +104,7 @@ export default function Dashboard() {
 
             <p className='font-bold'>History</p>
 
-            {data?.data?.map(transaction => (
+            {data?.data?.filter(({type}) => type !== 'funding').map(transaction => (
               <Transaction 
                 key={transaction._id} 
                 {...transaction}
